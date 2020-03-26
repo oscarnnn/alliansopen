@@ -1,6 +1,6 @@
 .side-drawer {
     height: 100%;
-    background: white;
+    background: linear-gradient(to left,#264D59,  #43978D);
     box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
     position: fixed;
     top: 0;
@@ -29,14 +29,14 @@
 }
 
 .side-drawer a {
-    color: purple;
+    color: white;
     text-decoration: none;
     font-size: 1.2rem;
 }
 
 .side-drawer a:hover,
 .side-drawer a:active {
-    color: orange;
+    color: #D46C4E;
 }
 
 @media (min-width: 769px) {

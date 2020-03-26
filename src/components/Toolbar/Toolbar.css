@@ -3,7 +3,7 @@
     top:0;
     left:0;
     width: 100%;
-    background: purple;
+    background: linear-gradient(to left,#264D59,  #43978D);
     height: 56px;
 }
 
@@ -22,6 +22,7 @@
     color: white;
     text-decoration: none;
     font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .spacer {
@@ -36,6 +37,7 @@
 }
 
 .toolbar_navigation-items li {
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 0.5rem;
 }
 
@@ -46,7 +48,7 @@
 
 .toolbar_navigation-items a:hover,
 .toolbar_navigation-items a:active {
-    color: orange;
+    color: #D46C4E;
 }
 
 @media (max-width: 768px) {
