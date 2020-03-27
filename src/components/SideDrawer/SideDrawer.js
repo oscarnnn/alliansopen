@@ -1,20 +1,28 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import './SideDrawer.css';
+import "./SideDrawer.css";
 
 const sideDrawer = props => {
-    let drawerClasses = ['side-drawer'];
-    if (props.show) {
-        drawerClasses = ['side-drawer open'];
-    }
-    return (
+  let drawerClasses = ["side-drawer"];
+  if (props.show) {
+    drawerClasses = ["side-drawer open"];
+  }
+  return (
     <nav className={drawerClasses}>
-        <ul>
-            <li><a href="/">Tävlande</a></li>
-            <li><a href="/">Scoreboard</a></li>
-        </ul>
+      <ul>
+        <Link>
+          <li>Tävlande</li>
+        </Link>
+        <Link>
+          <li to="/scoreboard">Scoreboard</li>
+        </Link>
+        <Link>
+          <li>Tävlingar</li>
+        </Link>
+      </ul>
     </nav>
-    );
+  );
 };
 
 export default sideDrawer;
