@@ -11,9 +11,9 @@ const competitor = () => (
       </Card.Text>
     </Card.Body>
     <ListGroup className="list-group-flush">
-      <ListGroupItem>Född 1992</ListGroupItem>
+      <ListGroupItem>Spelat sen han va 12</ListGroupItem>
       <ListGroupItem>Nike spons</ListGroupItem>
-      <ListGroupItem>Kallas Dr.Hook</ListGroupItem>
+      <ListGroupItem>Kallas Captain Hook</ListGroupItem>
     </ListGroup>
   </Card>
 );
