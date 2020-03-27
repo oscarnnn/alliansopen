@@ -10,7 +10,7 @@ const toolbar = props => (
             <div className="toolbar__toggle-button">
                 <DrawerToggleButton click={props.drawerClickHandler}/>
             </div>
-            <div className="toolbar__logo"><a href="/">Allians Max Open 2020</a></div>
+            <div className="toolbar__logo"><a href="/">Allians Max Tour 2020</a></div>
             <div className="spacer"></div>
             <div className="toolbar_navigation-items">
                 <ul>
