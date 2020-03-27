@@ -3,7 +3,7 @@ import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 const competitor = () => (
   <Card style={{ width: "18rem" }}>
-    <Card.Img variant="top" src={require("./Axel.jpg")} />
+    <Card.Img variant="top" src={require("../../assets/Competitors/Axel.jpg")} />
     <Card.Body>
       <Card.Title>Axel Esborn</Card.Title>
       <Card.Text>
