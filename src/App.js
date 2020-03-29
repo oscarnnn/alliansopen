@@ -11,6 +11,7 @@ import Backdrop from "./components/BackDrop/BackDrop";
 import Scoreboard from "./components/Scoreboard/Scoreboard";
 import Competitions from "./components/Competitions/Competitions";
 import Competitors from "./components/Competitors/Competitors";
+import Home from "./components/Home/Home";
 
 class App extends Component {
   state = {
@@ -24,7 +25,7 @@ class App extends Component {
   }
 
   onRouteChanged() {
-    this.drawerToggleClickHandler();
+    this.setState({ sideDrawerOpen: false });
   }
 
   drawerToggleClickHandler = () => {
@@ -45,7 +46,7 @@ class App extends Component {
     }
 
     return (
-      <div style={{ height: "100%" }}>
+      <div style={{ height: "100%",  }}>
           <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
           <SideDrawer show={this.state.sideDrawerOpen} />
           {backDrop}
@@ -61,11 +62,5 @@ class App extends Component {
     );
   }
 }
-
-const Home = () => (
-  <div>
-    <h1>Home</h1>
-  </div>
-);
 
 export default withRouter(App);

@@ -12,7 +12,7 @@ const jonte = () => (
     />
     <Card.Body>
       <Card.Title>Jonathan Karrin</Card.Title>
-      <Card.Text>Greenguden! Finns inga puttar elelr chippar som är svåra för Jon.</Card.Text>
+      <Card.Text>Greenguden! Finns inga puttar eller chippar som är svåra för Jon.</Card.Text>
     </Card.Body>
     <ListGroup className="list-group-flush">
       <ListGroupItem>Innehar sveriges dyraste putter</ListGroupItem>

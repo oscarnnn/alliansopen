@@ -17,38 +17,38 @@ const scoreBoard = () => (
       <tbody>
         <tr>
           <th scope="row">Axel</th>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td className="table-success">396‬</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td className="table-success">0‬</td>
           <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Jonathan</th>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td className="table-success">396‬</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Oscar</th>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td className="table-success">396‬</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Patrick</th>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td>99/0</td>
-          <td className="table-success">396‬</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
       </tbody>
