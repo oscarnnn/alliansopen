@@ -8,6 +8,7 @@ const home = () => (
     <Card>
       <Card.Body>
         <h1>Allians Max Tour 2020</h1>
+        <br/>
         <p>
           Sveriges sämsta fyrboll styr upp en trevlig sommartour. Upplägget är
           enkelt, som Allians Max medlem har man tillgång till 4 banor i Västra
