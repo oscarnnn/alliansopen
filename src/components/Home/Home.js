@@ -15,7 +15,7 @@ const home = () => (
         Sveriges sämsta fyrboll styr upp en trevlig sommartour. Upplägget är
         enkelt, som Allians Max medlem har man tillgång till 4 banor i Västra
         Götaland. Touren kommer gå ut på att dessa banor spelas en gång var och
-        spelarna ska samla så mycket poäng under dessa rundor. Den totala
+        spelarna ska samla så mycket poäng som möjligt under dessa rundor. Den totala
         poängen kommer räknas ut och den med mest poäng tar hem vinsten!
       </p>
       <p>Banor som ingår i Touren:</p>
