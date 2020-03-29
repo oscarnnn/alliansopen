@@ -20,11 +20,11 @@ const toolbar = props => (
           <Link to="/tavlande">
             <li>Tävlande</li>
           </Link>
-          <Link to="/scoreboard">
-            <li>Scoreboard</li>
-          </Link>
           <Link to="/tavlingar">
-            <li>Tävlingar</li>
+            <li>Resultat</li>
+          </Link>
+          <Link to="/scoreboard">
+            <li>Poängställning</li>
           </Link>
         </ul>
       </div>

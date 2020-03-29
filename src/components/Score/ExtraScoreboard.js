@@ -12,9 +12,9 @@ const scoreBoard = () => (
       </thead>
       <tbody>
         <tr>
-          <td className="table-success"></td>
-          <td className="table-success"></td>
-          <td className="table-success"></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table>

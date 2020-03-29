@@ -15,7 +15,6 @@ const home = () => (
           och spelarna ska samla så mycket poäng under dessa rundor. Den totala
           poängen kommer räknas ut och den med mest poäng tar hem vinsten!
         </p>
-        <br></br>
         <p>Banor som ingår i Touren:</p>
         <ul>
           <li>Hulta GK</li>
@@ -23,10 +22,10 @@ const home = () => (
           <li>Sisjö GK</li>
           <li>WoG Korthålsbana</li>
         </ul>
+        <Image src={require("../../assets/Frontpage/Golfball.jpg")} fluid rounded />
       </Card.Body>
     </Card>
 
-    <Image src={require("../../assets/Frontpage/Golfball.jpg")} fluid rounded />
   </div>
 );
 
