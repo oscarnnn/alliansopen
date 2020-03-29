@@ -57,46 +57,46 @@ const torrekulla = () => (
         </tr>
         <tr>
           <th scope="row">Axel</th>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td className="table-success">99</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Jonathan</th>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td className="table-success">99</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Oscar</th>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td className="table-success">99</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Patrick</th>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td>3</td>
-          <td className="table-success">99</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
       </tbody>
