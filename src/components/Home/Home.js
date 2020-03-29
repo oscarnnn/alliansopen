@@ -5,10 +5,9 @@ import "./Home.css";
 
 const home = () => (
   <div className="home">
-    <Card>
-      <Card.Body>
+        <Image fluid src={require("../../assets/Frontpage/AMTLogo.png")} />
         <h1>Allians Max Tour 2020</h1>
-        <br/>
+        <br />
         <p>
           Sveriges sämsta fyrboll styr upp en trevlig sommartour. Upplägget är
           enkelt, som Allians Max medlem har man tillgång till 4 banor i Västra
@@ -23,10 +22,6 @@ const home = () => (
           <li>Sisjö GK</li>
           <li>WoG Korthålsbana</li>
         </ul>
-        <Image src={require("../../assets/Frontpage/Golfball.jpg")} fluid rounded />
-      </Card.Body>
-    </Card>
-
   </div>
 );
 

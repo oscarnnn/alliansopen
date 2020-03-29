@@ -10,7 +10,7 @@
 
 .home h1 {
   color: #43978D;
-  font-size: 2.5em;
+  font-size: 5vw;
   font-weight: bold;
   font-family: Helvetica;
   text-align: center;
@@ -26,6 +26,7 @@
 
 .home p {
   font-size: 2.5vw;
+  margin-left: 10px;
 }
 
 .home ul {
@@ -40,5 +41,19 @@
 .home li::before {
   content: "• ";
   color: #43978D; /* or whatever color you prefer */
+}
+
+@media screen and (min-width: 1200px) {
+  .home h1 {
+    font-size: 60px;
+ }
+
+  .home p {
+     font-size: 30px;
+  }
+
+  .home ul {
+    font-size: 30px;
+ }
 }
 
