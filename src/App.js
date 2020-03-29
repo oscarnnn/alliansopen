@@ -8,7 +8,7 @@ import {
 import Toolbar from "./components/Toolbar/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
 import Backdrop from "./components/BackDrop/BackDrop";
-import Scoreboard from "./components/Scoreboard/Scoreboard";
+import Leaderboard from "./components/Score/Leaderboard";
 import Competitions from "./components/Competitions/Competitions";
 import Competitors from "./components/Competitors/Competitors";
 import Home from "./components/Home/Home";
@@ -53,7 +53,7 @@ class App extends Component {
           <main style={{ marginTop: "64px" }}>
             <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/scoreboard" component={Scoreboard} />
+              <Route path="/scoreboard" component={Leaderboard} />
               <Route path="/tavlingar" component={Competitions} />
               <Route path="/tavlande" component={Competitors} />
             </Switch>
