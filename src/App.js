@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  withRouter
+} from "react-router-dom";
 
 import Toolbar from "./components/Toolbar/Toolbar";
 import SideDrawer from "./components/SideDrawer/SideDrawer";
@@ -12,6 +16,16 @@ class App extends Component {
   state = {
     sideDrawerOpen: false
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+  }
+
+  onRouteChanged() {
+    this.drawerToggleClickHandler();
+  }
 
   drawerToggleClickHandler = () => {
     this.setState(prevState => {
@@ -32,19 +46,17 @@ class App extends Component {
 
     return (
       <div style={{ height: "100%" }}>
-        <Router>
           <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
           <SideDrawer show={this.state.sideDrawerOpen} />
           {backDrop}
           <main style={{ marginTop: "64px" }}>
             <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/scoreboard" component={Scoreboard} />
-            <Route path="/tavlingar" component={Competitions} />
-            <Route path="/tavlande" component={Competitors} />
+              <Route path="/" exact component={Home} />
+              <Route path="/scoreboard" component={Scoreboard} />
+              <Route path="/tavlingar" component={Competitions} />
+              <Route path="/tavlande" component={Competitors} />
             </Switch>
           </main>
-        </Router>
       </div>
     );
   }
@@ -56,4 +68,4 @@ const Home = () => (
   </div>
 );
 
-export default App;
+export default withRouter(App);

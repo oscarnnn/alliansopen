@@ -1,9 +1,9 @@
 import React from 'react';
 
 const scoreBoard = () => (
-    <div class="table-responsive">
-    <table class="table table-bordered">
-      <thead class="thead-dark">
+    <div className="table-responsive">
+    <table className="table table-bordered">
+      <thead className="thead-dark">
         <tr>
           <th scope="col">Tävlande</th>
           <th scope="col">WoG Korthål</th>
@@ -21,8 +21,8 @@ const scoreBoard = () => (
           <td>99/0</td>
           <td>99/0</td>
           <td>99/0</td>
-          <td class="table-success">396‬</td>
-          <td class="table-success">0</td>
+          <td className="table-success">396‬</td>
+          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Jonathan</th>
@@ -30,8 +30,8 @@ const scoreBoard = () => (
           <td>99/0</td>
           <td>99/0</td>
           <td>99/0</td>
-          <td class="table-success">396‬</td>
-          <td class="table-success">0</td>
+          <td className="table-success">396‬</td>
+          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Oscar</th>
@@ -39,8 +39,8 @@ const scoreBoard = () => (
           <td>99/0</td>
           <td>99/0</td>
           <td>99/0</td>
-          <td class="table-success">396‬</td>
-          <td class="table-success">0</td>
+          <td className="table-success">396‬</td>
+          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Patrick</th>
@@ -48,8 +48,8 @@ const scoreBoard = () => (
           <td>99/0</td>
           <td>99/0</td>
           <td>99/0</td>
-          <td class="table-success">396‬</td>
-          <td class="table-success">0</td>
+          <td className="table-success">396‬</td>
+          <td className="table-success">0</td>
         </tr>
       </tbody>
     </table>

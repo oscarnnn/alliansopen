@@ -3,11 +3,11 @@ import React from "react";
 import { Table } from "react-bootstrap";
 
 const hulta = () => (
-  <div class="table-responsive">
+  <div className="table-responsive">
     <Table bordered responsive size="sm">
-      <thead class="thead-dark">
+      <thead className="thead-dark">
       <tr>
-          <th colspan="12" scope="col" style={{textAlign:"center"}}>Hulta GK</th>
+          <th colSpan="12" scope="col" style={{textAlign:"center"}}>Hulta GK</th>
         </tr>
         <tr>
           <th scope="col">Hål</th>
@@ -25,7 +25,7 @@ const hulta = () => (
         </tr>
       </thead>
       <tbody>
-      <tr class="table-active">
+      <tr className="table-active">
           <th scope="row">Index</th>
           <td>3</td>
           <td>5</td>
@@ -39,7 +39,7 @@ const hulta = () => (
           <td>-</td>
           <td>-</td>
         </tr>
-        <tr class="table-active">
+        <tr className="table-active">
           <th scope="row">Par</th>
           <td>4</td>
           <td>4</td>
@@ -53,7 +53,7 @@ const hulta = () => (
           <td>35</td>
           <td>-</td>
         </tr>
-        <tr class="table-active">
+        <tr className="table-active">
           <th scope="row">Längd</th>
           <td>375m</td>
           <td>325m</td>
@@ -78,8 +78,8 @@ const hulta = () => (
           <td>3</td>
           <td>3</td>
           <td>3</td>
-          <td class="table-success">99</td>
-          <td class="table-success">0</td>
+          <td className="table-success">99</td>
+          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Jonathan</th>
@@ -92,8 +92,8 @@ const hulta = () => (
           <td>3</td>
           <td>3</td>
           <td>3</td>
-          <td class="table-success">99</td>
-          <td class="table-success">0</td>
+          <td className="table-success">99</td>
+          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Oscar</th>
@@ -106,8 +106,8 @@ const hulta = () => (
           <td>3</td>
           <td>3</td>
           <td>3</td>
-          <td class="table-success">99</td>
-          <td class="table-success">0</td>
+          <td className="table-success">99</td>
+          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Patrick</th>
@@ -120,14 +120,14 @@ const hulta = () => (
           <td>3</td>
           <td>3</td>
           <td>3</td>
-          <td class="table-success">99</td>
-          <td class="table-success">0</td>
+          <td className="table-success">99</td>
+          <td className="table-success">0</td>
         </tr>
       </tbody>
     </Table>
 
     <Table bordered responsive size="sm">
-      <thead class="thead-dark">
+      <thead className="thead-dark">
         <tr>
           <th scope="col">Hål</th>
           <th scope="col">10</th>
@@ -144,7 +144,7 @@ const hulta = () => (
         </tr>
       </thead>
       <tbody>
-      <tr class="table-active">
+      <tr className="table-active">
           <th scope="row">Index</th>
           <td>2</td>
           <td>6</td>
@@ -158,7 +158,7 @@ const hulta = () => (
           <td>-</td>
           <td>-</td>
         </tr>
-        <tr class="table-active">
+        <tr className="table-active">
           <th scope="row">Par</th>
           <td>3</td>
           <td>4</td>
@@ -172,7 +172,7 @@ const hulta = () => (
           <td>27</td>
           <td>-</td>
         </tr>
-        <tr class="table-active">
+        <tr className="table-active">
           <th scope="row">Längd</th>
           <td>135m</td>
           <td>265m</td>
@@ -197,8 +197,8 @@ const hulta = () => (
           <td>3</td>
           <td>3</td>
           <td>3</td>
-          <td class="table-success">99</td>
-          <td class="table-success">0</td>
+          <td className="table-success">99</td>
+          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Jonathan</th>
@@ -211,8 +211,8 @@ const hulta = () => (
           <td>3</td>
           <td>3</td>
           <td>3</td>
-          <td class="table-success">99</td>
-          <td class="table-success">0</td>
+          <td className="table-success">99</td>
+          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Oscar</th>
@@ -225,8 +225,8 @@ const hulta = () => (
           <td>3</td>
           <td>3</td>
           <td>3</td>
-          <td class="table-success">99</td>
-          <td class="table-success">0</td>
+          <td className="table-success">99</td>
+          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Patrick</th>
@@ -239,8 +239,8 @@ const hulta = () => (
           <td>3</td>
           <td>3</td>
           <td>3</td>
-          <td class="table-success">99</td>
-          <td class="table-success">0</td>
+          <td className="table-success">99</td>
+          <td className="table-success">0</td>
         </tr>
       </tbody>
     </Table>
