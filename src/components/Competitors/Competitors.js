@@ -1,21 +1,24 @@
 import React from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { CardGroup } from "react-bootstrap";
 
+import Axel from "./Axel";
+import Putte from "./Putte";
+import Jonte from "./Jonte";
+import Ogge from "./Ogge";
+
+import './Competitors.css'
 const competitor = () => (
-  <Card style={{ width: "18rem" }}>
-    <Card.Img variant="top" src={require("../../assets/Competitors/Axel.jpg")} />
-    <Card.Body>
-      <Card.Title>Axel Esborn</Card.Title>
-      <Card.Text>
-        Bra humör, bra frilla och otroligt fin spoon.
-      </Card.Text>
-    </Card.Body>
-    <ListGroup className="list-group-flush">
-      <ListGroupItem>Spelat sen han va 12</ListGroupItem>
-      <ListGroupItem>Nike spons</ListGroupItem>
-      <ListGroupItem>Kallas Captain Hook</ListGroupItem>
-    </ListGroup>
-  </Card>
+  <div
+    className="competitors"
+  
+  >
+    <CardGroup>
+      <Axel />
+      <Putte />
+      <Jonte />
+      <Ogge />
+    </CardGroup>
+  </div>
 );
 
 export default competitor;

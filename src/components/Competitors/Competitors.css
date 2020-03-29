@@ -1,0 +1,11 @@
+.competitors {
+  z-index: "900";
+}
+
+@media (max-width: 768px) {
+  .competitors {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

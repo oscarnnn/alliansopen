@@ -5,6 +5,7 @@
     width: 100%;
     background: linear-gradient(to left,#264D59,  #43978D);
     height: 56px;
+    z-index: 1000;
 }
 
 .toolbar__navigation {
