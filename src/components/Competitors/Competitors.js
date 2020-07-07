@@ -6,6 +6,7 @@ import Putte from "./Putte";
 import Jonte from "./Jonte";
 import Ogge from "./Ogge";
 import Ludde from "./Ludde";
+import Ljubo from "./Ljubo";
 
 import './Competitors.css'
 const competitor = () => (
@@ -19,6 +20,7 @@ const competitor = () => (
       <Jonte />
       <Ogge />
       <Ludde />
+      <Ljubo />
     </CardGroup>
   </div>
 );
