@@ -15,7 +15,7 @@ const sideDrawer = props => {
             <li>Tävlande</li>
           </Link>
           <Link to="/tavlingar">
-            <li>Resultat</li>
+            <li>Tävlingar</li>
           </Link>
           <Link to="/scoreboard">
             <li>Poängställning</li>

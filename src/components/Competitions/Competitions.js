@@ -1,16 +1,14 @@
 import React from "react";
+import Iframe from "../Iframe/Iframe";
 
-import Hulta from "../Scorecard/Hulta";
-import Torrekulla from "../Scorecard/Torrekulla";
-import Sisjon from "../Scorecard/Sisjon";
-import Wog from "../Scorecard/Wog";
+import "./Competitions.css";
 
-const competitions = () => (
-  <div>
-    <Hulta />
-    <Torrekulla />
-    <Sisjon />
-    <Wog />
+const sisjon =
+  "https://online.golfgamebook.com/leaderboard/2ud-ha79?iframe=true";
+
+  const competitions = () => (
+  <div className="competitions">
+    <Iframe source={sisjon}></Iframe>
   </div>
 );
 

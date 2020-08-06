@@ -10,6 +10,7 @@ const scoreBoard = () => (
           <th scope="col">Sisjön GK</th>
           <th scope="col">Torrekulla GK</th>
           <th scope="col">Hulta GK</th>
+          <th scope="col">Närmast Pin</th>
           <th scope="col">Slag</th>
           <th scope="col">Poäng</th>
         </tr>
@@ -21,6 +22,7 @@ const scoreBoard = () => (
           <td>0/0</td>
           <td>0/0</td>
           <td>0/0</td>
+          <td>0</td>
           <td className="table-success">0‬</td>
           <td className="table-success">0</td>
         </tr>
@@ -30,6 +32,7 @@ const scoreBoard = () => (
           <td>0/0</td>
           <td>0/0</td>
           <td>0/0</td>
+          <td>0</td>
           <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
@@ -39,6 +42,7 @@ const scoreBoard = () => (
           <td>0/0</td>
           <td>0/0</td>
           <td>0/0</td>
+          <td>0</td>
           <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
@@ -48,6 +52,27 @@ const scoreBoard = () => (
           <td>0/0</td>
           <td>0/0</td>
           <td>0/0</td>
+          <td>0</td>
+          <td className="table-success">0</td>
+          <td className="table-success">0</td>
+        </tr>
+        <tr>
+          <th scope="row">Ludvig</th>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0</td>
+          <td className="table-success">0</td>
+          <td className="table-success">0</td>
+        </tr>
+        <tr>
+          <th scope="row">Ljubo</th>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0</td>
           <td className="table-success">0</td>
           <td className="table-success">0</td>
         </tr>
