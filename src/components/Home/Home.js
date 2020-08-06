@@ -1,8 +1,8 @@
 import React from "react";
 import { Image } from "react-bootstrap";
+import Intro from "../Intro/Intro";
 
 import "./Home.css";
-
 const home = () => (
   <div className="home">
     <div className="home">
@@ -26,6 +26,7 @@ const home = () => (
         <li>WoG Korthålsbana</li>
       </ul>
     </div>
+<Intro></Intro>
   </div>
 );
 
