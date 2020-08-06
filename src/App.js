@@ -52,7 +52,7 @@ class App extends Component {
           {backDrop}
           <main style={{ marginTop: "64px" }}>
             <Switch>
-              <Route path="/" exact component={Home} />
+              <Route exact path="/" exact component={Home} />
               <Route path="/scoreboard" component={Leaderboard} />
               <Route path="/tavlingar" component={Competitions} />
               <Route path="/tavlande" component={Competitors} />
