@@ -63,8 +63,8 @@ const scoreBoard = () => (
           <td>0/0</td>
           <td>0/0</td>
           <td>0</td>
+          <td className="table-success">162</td>
           <td className="table-success">7</td>
-          <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Jonathan</th>
@@ -73,7 +73,7 @@ const scoreBoard = () => (
           <td>0/0</td>
           <td>0/0</td>
           <td>0</td>
-          <td className="table-success">134</td>
+          <td className="table-success">164</td>
           <td className="table-success">5</td>
         </tr>
       </tbody>
