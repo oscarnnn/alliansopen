@@ -19,62 +19,62 @@ const scoreBoard = () => (
         <tr>
           <th scope="row">Axel</th>
           <td>0/0</td>
-          <td>0/0</td>
+          <td>104/34</td>
           <td>0/0</td>
           <td>0/0</td>
           <td>0</td>
-          <td className="table-success">0‬</td>
+          <td className="table-success">104‬</td>
+          <td className="table-success">34</td>
+        </tr>
+        <tr>
+          <th scope="row">Patrick</th>
+          <td>0/0</td>
+          <td>112/24</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>2</td>
+          <td className="table-success">112</td>
+          <td className="table-success">28</td>
+        </tr>
+        <tr>
+          <th scope="row">Oscar</th>
+          <td>0/0</td>
+          <td>104/27</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0</td>
+          <td className="table-success">104</td>
+          <td className="table-success">27</td>
+        </tr>
+        <tr>
+          <th scope="row">Ljubo</th>
+          <td>0/0</td>
+          <td>131/22</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0</td>
+          <td className="table-success">131</td>
+          <td className="table-success">22</td>
+        </tr>
+        <tr>
+          <th scope="row">Ludvig</th>
+          <td>0/0</td>
+          <td>162/7</td>
+          <td>0/0</td>
+          <td>0/0</td>
+          <td>0</td>
+          <td className="table-success">7</td>
           <td className="table-success">0</td>
         </tr>
         <tr>
           <th scope="row">Jonathan</th>
           <td>0/0</td>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0</td>
-          <td className="table-success">0</td>
-          <td className="table-success">0</td>
-        </tr>
-        <tr>
-          <th scope="row">Oscar</th>
-          <td>0/0</td>
-          <td>0/0</td>
+          <td>134/5</td>
           <td>0/0</td>
           <td>0/0</td>
           <td>0</td>
-          <td className="table-success">0</td>
-          <td className="table-success">0</td>
-        </tr>
-        <tr>
-          <th scope="row">Patrick</th>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0</td>
-          <td className="table-success">0</td>
-          <td className="table-success">0</td>
-        </tr>
-        <tr>
-          <th scope="row">Ludvig</th>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0</td>
-          <td className="table-success">0</td>
-          <td className="table-success">0</td>
-        </tr>
-        <tr>
-          <th scope="row">Ljubo</th>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0/0</td>
-          <td>0</td>
-          <td className="table-success">0</td>
-          <td className="table-success">0</td>
+          <td className="table-success">134</td>
+          <td className="table-success">5</td>
         </tr>
       </tbody>
     </table>
