@@ -10,7 +10,6 @@ const Iframe = ({ source }) => {
 
   return (
     <div className="iframe">
-      <h6 className="header">Sisjö GK</h6>
       <ResponsiveEmbed>
         <embed type="image/svg+xml" src={source} />
       </ResponsiveEmbed>

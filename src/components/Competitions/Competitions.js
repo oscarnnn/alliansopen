@@ -6,8 +6,13 @@ import "./Competitions.css";
 const sisjon =
   "https://online.golfgamebook.com/leaderboard/2ud-ha79?iframe=true";
 
-  const competitions = () => (
+const torrekulla = "https://online.golfgamebook.com/leaderboard/2ue-f1w3";
+
+const competitions = () => (
   <div className="competitions">
+    <h6 className="header">Torrekulla GK</h6>
+    <Iframe source={torrekulla}></Iframe>
+    <h6 className="header">Sisjö GK</h6>
     <Iframe source={sisjon}></Iframe>
   </div>
 );

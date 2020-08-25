@@ -3,7 +3,13 @@
     position: absolute;
     left: 0;
     width: 100%;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
+}
+
+.header {
+    text-align: center; 
+    font-size: 20;
+    color: #264D59; 
+    font-weight: bold;
 }
