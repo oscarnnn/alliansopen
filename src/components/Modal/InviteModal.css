@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Rochester&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rochester&display=swap');
 
 .headerBkg {
     background: linear-gradient(94.58deg, #11998E 39.35%, #32FC2E 166.16%);
 }
 
 .close {
-    color: #ffffff !important;
+    color: linear-gradient(94.58deg, #11998E 39.35%, #32FC2E 166.16%);
     font-size: 2rem;
  }
+
+.invModalTitle {
+    font-family: 'Rochester', cursive;
+    color: white;
+}
 
 .formLabel {
     color: #4b4747;
@@ -29,6 +35,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 20px;
 }
 
 .greetingName {
@@ -43,11 +50,33 @@
     font-size: 1.8rem;
 }
 
+.submitButton {
+    background: linear-gradient(94.58deg, #11998E 39.35%, #32FC2E 166.16%);
+    color: white;
+}
+
 .tglButtonLinear.active {
     background: linear-gradient(94.58deg, #11998E 39.35%, #32FC2E 166.16%);
 }
 
+.invModalBody {
+    display: "flex" !important;
+    flex-direction: "column" !important;
+}
+
+.invCloseButton {
+    align-self: flex-end;
+    font-size: 1.5rem;
+}
+
 @media (max-width: 768px) {
+    .invModalTitle {
+        font-family: 'Rochester', cursive;
+        color: white;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
     .headerBkg {
         padding: 0.5rem;
     }
@@ -55,11 +84,11 @@
     font-size: 1.5rem;
     }
     .greetingName {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
     
     .greetingText {
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
   }
   

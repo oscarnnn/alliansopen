@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, ButtonGroup, ToggleButton } from "react-bootstrap";
 import firebaseApp from "../../firebase";
+import {CgClose} from "react-icons/cg";
 import "./InviteModal.css"
 
 function InviteModal(props) {
@@ -51,49 +52,46 @@ function InviteModal(props) {
   }
 
   return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header className="headerBkg" closeButton>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="formContainer">
-            <h4 className="formLabel">Skriv in din kod</h4>
-            <form onSubmit={() => getCompetitor(kod)}>
-              <label>
-                <input type="text" value={kod} onChange={(v) => setKod(v.target.value)} />
-              </label>
-              <input type="submit" value="Submit" />
-            </form>
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Body style={{display:"flex", flexDirection:"column"}}>
+        <CgClose className="invCloseButton" onClick={() => props.onHide()}/>
+        <div className="formContainer">
+          <h4 className="formLabel">Skriv in din kod</h4>
+          <div style={{flexDirection:"column"}}>
+            <input type="text" value={kod} onChange={(v) => setKod(v.target.value)} />
+            <button className="submitButton" onClick={() => getCompetitor(kod)}> Submit </button>
           </div>
-          {competitor.firstName !== "" &&
-            <div className="greetingContainer">
-              <h2 className="greetingName">Tjena {competitor.firstName + " " + competitor.lastName}!</h2>
-              <p className="greetingText">Joinar du touren?</p>
-              <ButtonGroup toggle className="mb-2">
-                <ToggleButton
-                  className="tglButtonLinear"
-                  key="1"
-                  type="radio"
-                  variant="secondary"
-                  value={"Yes"}
-                  checked={competitor.answer === "Yes"}
-                  onChange={(e) => updateStatus(e.currentTarget.value)}>Klart jag är där!</ToggleButton>
-                <ToggleButton
-                  className="tglButtonLinear"
-                  key="2"
-                  type="radio"
-                  variant="secondary"
-                  value={"No"}
-                  checked={competitor.answer === "No"}
-                  onChange={(e) => updateStatus(e.currentTarget.value)}>Nej för jag suger!</ToggleButton>
-              </ButtonGroup>
-            </div>}
-        </Modal.Body>
-      </Modal>
+        </div>
+        {competitor.firstName !== "" &&
+          <div className="greetingContainer">
+            <h2 className="greetingName">Tjena {competitor.firstName + " " + competitor.lastName}!</h2>
+            <p className="greetingText">Joinar du touren?</p>
+            <ButtonGroup toggle className="mb-2">
+              <ToggleButton
+                className="tglButtonLinear"
+                key="1"
+                type="radio"
+                variant="secondary"
+                value={"Yes"}
+                checked={competitor.answer === "Yes"}
+                onChange={(e) => updateStatus(e.currentTarget.value)}>Klart jag är där!</ToggleButton>
+              <ToggleButton
+                className="tglButtonLinear"
+                key="2"
+                type="radio"
+                variant="secondary"
+                value={"No"}
+                checked={competitor.answer === "No"}
+                onChange={(e) => updateStatus(e.currentTarget.value)}>Nej för jag suger!</ToggleButton>
+            </ButtonGroup>
+          </div>}
+      </Modal.Body>
+    </Modal>
   );
 }
 
