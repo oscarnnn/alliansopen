@@ -1,18 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Rochester&display=swap');
+
 .toolbar {
     position: fixed;
     top:0;
     left:0;
     width: 100%;
-    background: linear-gradient(to left,#264D59,  #43978D);
-    height: 56px;
+    background: linear-gradient(94.58deg, #11998E 39.35%, #32FC2E 166.16%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     z-index: 1000;
+    height: auto;
+    padding: 10px;
 }
 
 .toolbar__navigation {
     display: flex;
     height: 100%;
     align-items: center;
+    justify-content: space-between;
     padding: 0 1rem;
+}
+
+.spacerTab {
+    width: 34px;
+    height: 34px;
 }
 
 .toolbar__logo {
@@ -22,9 +32,10 @@
 .toolbar__logo a {
     color: white;
     text-decoration: none;
-    font-size: 5vw;
+    font-size: 1.2rem;
     margin-left: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Rochester', cursive;
+    align-self: center;
 }
 
 .spacer {
@@ -40,7 +51,9 @@
 
 .toolbar_navigation-items li {
     font-family: Arial, Helvetica, sans-serif;
-    padding: 0 0.5rem;
+    font-size: 0.8rem;
+    margin-left: 2rem;
+    margin-right: 3rem;
 }
 
 .toolbar_navigation-items a {
@@ -60,7 +73,15 @@
 }
 
 @media (min-width: 769px) {
+    .toolbar__navigation {
+        flex-direction: column;
+    }
+
     .toolbar__toggle-button {
+        display: none;
+    }
+
+    .spacerTab {
         display: none;
     }
 
@@ -71,8 +92,7 @@
     .toolbar__logo a {
         color: white;
         text-decoration: none;
-        font-size: 1vw;
+        font-size: 2rem;
         margin-left: 10px;
-        font-family: Arial, Helvetica, sans-serif;
     }
 }

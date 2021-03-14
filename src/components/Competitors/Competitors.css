@@ -1,5 +1,25 @@
 .competitors {
   z-index: "900";
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.competitorContainer {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  width: 80%;
+  grid-gap: 5%;
+}
+
+.modalButton {
+  margin: 20px;
+  background: linear-gradient(94.58deg, #11998E 39.35%, #32FC2E 166.16%);
+  color: white;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  max-width: 200px;
 }
 
 @media (max-width: 768px) {
@@ -7,5 +27,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
   }
+
+  .competitorContainer {
+    flex-direction: column;
+    width: 50%;
+    display: flex;
+  }
+  
 }

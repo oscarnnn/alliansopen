@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Rochester&display=swap');
+
+.headerBkg {
+    background: linear-gradient(94.58deg, #11998E 39.35%, #32FC2E 166.16%);
+}
+
+.close {
+    color: #ffffff !important;
+    font-size: 2rem;
+ }
+
+.formLabel {
+    color: #4b4747;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Reem Kufi', sans-serif;
+    text-align: center;
+}
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.greetingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.greetingName {
+    color: #4b4747;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.greetingText {
+    color: #4b4747;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.tglButtonLinear.active {
+    background: linear-gradient(94.58deg, #11998E 39.35%, #32FC2E 166.16%);
+}
+
+@media (max-width: 768px) {
+    .headerBkg {
+        padding: 0.5rem;
+    }
+    .formLabel {
+    font-size: 1.5rem;
+    }
+    .greetingName {
+        font-size: 1rem;
+    }
+    
+    .greetingText {
+        font-size: 0.8rem;
+    }
+  }
+  

@@ -1,18 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Rochester&display=swap');
+
 .home {
   z-index: "900";
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
+  font-family: 'Reem Kufi', sans-serif;
 }
 
 .home h1 {
-  color: #43978D;
-  font-size: 5vw;
-  font-weight: bold;
-  font-family: Helvetica;
+  color: #000000;
+  font-size: 1rem;
   text-align: center;
   text-shadow: 
     0 6px 1px rgba(0,0,0,.1), 
@@ -25,12 +27,12 @@
 }
 
 .home p {
-  font-size: 2.5vw;
+  font-size: 0.8rem;
   margin-left: 10px;
 }
 
 .home ul {
-  font-size: 2.5vw;
+  font-size: 0.8rem;
   list-style: none;
 }
 
@@ -40,20 +42,23 @@
 
 .home li::before {
   content: "• ";
-  color: #43978D; /* or whatever color you prefer */
+  color: #43978D;
 }
 
-@media screen and (min-width: 1200px) {
+@media (min-width: 769px) {
+  .home {
+    margin-top: 40px;
+  }
   .home h1 {
-    font-size: 60px;
+    font-size: 2rem;
  }
 
   .home p {
-     font-size: 30px;
+     font-size: 1.5rem;
   }
 
   .home ul {
-    font-size: 30px;
+    font-size: 1.5rem;
  }
 }
 

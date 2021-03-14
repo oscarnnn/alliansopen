@@ -20,6 +20,9 @@ const sideDrawer = props => {
           <Link to="/scoreboard">
             <li>Poängställning</li>
           </Link>
+          <Link to="/2020">
+            <li>2020</li>
+          </Link>
         </ul>
     </nav>
   );

@@ -9,8 +9,8 @@ const Iframe = ({ source }) => {
   }
 
   return (
-    <div className="iframe">
-      <ResponsiveEmbed>
+    <div>
+      <ResponsiveEmbed className="iframe">
         <embed type="image/svg+xml" src={source} />
       </ResponsiveEmbed>
     </div>

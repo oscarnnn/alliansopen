@@ -12,6 +12,7 @@ import Leaderboard from "./components/Score/Leaderboard";
 import Competitions from "./components/Competitions/Competitions";
 import Competitors from "./components/Competitors/Competitors";
 import Home from "./components/Home/Home";
+import TwentyTwenty from "./components/2020/TwentyTwenty";
 
 class App extends Component {
   state = {
@@ -56,6 +57,7 @@ class App extends Component {
               <Route path="/scoreboard" component={Leaderboard} />
               <Route path="/tavlingar" component={Competitions} />
               <Route path="/tavlande" component={Competitors} />
+              <Route path="/2020" component={TwentyTwenty} />
             </Switch>
           </main>
       </div>

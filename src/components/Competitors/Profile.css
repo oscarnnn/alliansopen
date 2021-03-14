@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&family=Rochester&display=swap');
+
+.profileContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.profileName {
+    font-family: 'Reem Kufi', sans-serif;
+    color: #4b4747;
+    font-size: 1.8rem !important;
+    margin-top: 10px;
+}
+
+.roundedContainer {
+    position:relative;
+    width:80%;
+    padding-bottom:80%;
+    border-radius:50%;
+    overflow:hidden;
+}
+
+.roundedImg {
+    position:absolute;
+    object-fit: cover;
+    width:100%;
+    height:100%;
+}
