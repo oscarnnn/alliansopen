@@ -66,9 +66,19 @@
     color: #D46C4E;
 }
 
+
 @media (max-width: 768px) {
     .toolbar_navigation-items {
         display: none;
+    }
+
+    .toolbar__logo a {
+        font-size: 1rem;
+    }
+
+    .spacerTab {
+        width: 5px;
+        height: 5px;
     }
 }
 
