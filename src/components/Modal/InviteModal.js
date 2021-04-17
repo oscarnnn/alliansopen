@@ -1,16 +1,28 @@
-import React, { useState } from "react";
-import { Modal, ButtonGroup, ToggleButton } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Alert, Modal, ButtonGroup, ToggleButton } from "react-bootstrap";
 import firebaseApp from "../../firebase";
-import {CgClose} from "react-icons/cg";
+import { CgClose } from "react-icons/cg";
 import "./InviteModal.css"
 
 function InviteModal(props) {
   const [kod, setKod] = useState("");
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [showLoser, setShowLoser] = useState(false);
   const [competitor, setCompetitor] = useState({
     firstName: "",
     lastName: "",
     answer: ""
   })
+
+  const showWelcomeHandler = () => {
+    setShowWelcome(true)
+    setShowLoser(false)
+  }
+
+  const showLoserHandler = () => {
+    setShowLoser(true)
+    setShowWelcome(false)
+  }
 
   async function getCompetitor(competitor) {
     if (competitor) {
@@ -35,6 +47,15 @@ function InviteModal(props) {
     const ref = firebaseApp.firestore().collection("competitors");
     const doc = await ref.doc(kod);
 
+    if (status === "Yes") {
+      showWelcomeHandler()
+    }
+
+    if (status === "No") {
+      showLoserHandler()
+    }
+
+    console.log(status)
     return doc.update({
       answer: status
     })
@@ -49,6 +70,8 @@ function InviteModal(props) {
       .catch(function (error) {
         console.error("Error updating document: ", error);
       });
+
+
   }
 
   return (
@@ -58,11 +81,11 @@ function InviteModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Body style={{display:"flex", flexDirection:"column"}}>
-        <CgClose className="invCloseButton" onClick={() => props.onHide()}/>
+      <Modal.Body style={{ display: "flex", flexDirection: "column" }}>
+        <CgClose className="invCloseButton" onClick={() => props.onHide()} />
         <div className="formContainer">
           <h4 className="formLabel">Skriv in din kod</h4>
-          <div style={{flexDirection:"column"}}>
+          <div style={{ flexDirection: "column" }}>
             <input type="text" value={kod} onChange={(v) => setKod(v.target.value)} />
             <button className="submitButton" onClick={() => getCompetitor(kod)}> Submit </button>
           </div>
@@ -90,6 +113,12 @@ function InviteModal(props) {
                 onChange={(e) => updateStatus(e.currentTarget.value)}>Nej för jag suger!</ToggleButton>
             </ButtonGroup>
           </div>}
+        {
+          showWelcome && <Alert variant={'success'}> Håååå, välkommen till touren kompis! Du syns nu under tävlande. </Alert>
+        }
+        {
+          showLoser && <Alert variant={'danger'}> Ok, ha de gött då! </Alert>
+        }
       </Modal.Body>
     </Modal>
   );
