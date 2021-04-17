@@ -70,7 +70,7 @@ class Competitor extends React.Component {
           { this.state.competitors &&
             this.state.competitors.map(c => {
               console.log(c)
-              return <Profile firstName={c.firstName} lastName={c.lastName} imgSrc={c.imgSrc}/>
+              return <Profile firstName={c.firstName} lastName={c.lastName} nickName={c.nickName} imgSrc={c.imgSrc}/>
             })
           }
         </div>

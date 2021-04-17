@@ -7,7 +7,11 @@ const Profile = (props) => (
         <div className="roundedContainer">
             <img className="roundedImg" src={require("../../assets/Competitors/" + props.imgSrc + ".png")} />
         </div>
-        <h2 className="profileName">{props.firstName + " " + props.lastName}</h2>
+        <div className="profileNameContainer">
+            <h2 className="profileName">{props.firstName}</h2>
+            <h2 className="nickName">"{props.nickName}"</h2>
+            <h2 className="profileName">{props.lastName}</h2>
+        </div>
     </div>
 );
 
