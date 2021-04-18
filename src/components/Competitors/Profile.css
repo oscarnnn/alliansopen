@@ -25,12 +25,16 @@
     color: #4b4747;
     font-size: 1.3rem !important;
     margin: 2;
+    width: 100%;
+    text-align: center;
 }
 
 .nickName {
     font-family: 'Reem Kufi', sans-serif;
     color: #4b4747;
     font-size: 1.2rem !important;
+    width: 100%;
+    text-align: center;
     margin: 2;
     font-style: italic;
 }
@@ -52,12 +56,12 @@
 
 @media (max-width: 768px) {
     .profileName {
-        font-size: 0.9rem !important;
+        font-size: 1rem !important;
         margin: 0;
   }
 
   .nickName {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
     margin: 0;
     font-style: italic;
 }
