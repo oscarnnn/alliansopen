@@ -10,8 +10,9 @@
 .competitorContainer {
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  width: 80%;
+  width: 100%;
   grid-gap: 5%;
+  align-items: center;
 }
 
 .modalButton {
@@ -33,7 +34,6 @@
 
   .competitorContainer {
     flex-direction: column;
-    width: 50%;
     display: flex;
   }
   
