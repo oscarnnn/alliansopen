@@ -33,8 +33,6 @@ class Competitor extends React.Component {
 
   async componentDidMount() {
     this.updateCompetitors()
-
-    console.log(JSON.stringify(this.props))
   }
 
   updateCompetitors() {
@@ -69,7 +67,6 @@ class Competitor extends React.Component {
         <div className="competitorContainer">
           { this.state.competitors &&
             this.state.competitors.map(c => {
-              console.log(c)
               return <Profile firstName={c.firstName} lastName={c.lastName} nickName={c.nickName} imgSrc={c.imgSrc}/>
             })
           }

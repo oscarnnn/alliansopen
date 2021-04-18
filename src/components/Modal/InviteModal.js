@@ -27,7 +27,7 @@ function InviteModal(props) {
   async function getCompetitor(competitor) {
     if (competitor) {
       const ref = firebaseApp.firestore().collection("competitors");
-      const doc = await ref.doc(competitor).get();
+      const doc = await ref.doc(competitor.toLowerCase()).get();
       if (!doc.data()) {
         const emptyCompetitor = {
           firstName: "",
@@ -37,7 +37,6 @@ function InviteModal(props) {
         setCompetitor(emptyCompetitor)
         console.log("No such competitor!")
       } else {
-        console.log()
         doc.data() && setCompetitor(doc.data())
       }
     }
@@ -45,7 +44,7 @@ function InviteModal(props) {
 
   async function updateStatus(status) {
     const ref = firebaseApp.firestore().collection("competitors");
-    const doc = await ref.doc(kod);
+    const doc = await ref.doc(kod.toLowerCase());
 
     if (status === "Yes") {
       showWelcomeHandler()
@@ -55,7 +54,6 @@ function InviteModal(props) {
       showLoserHandler()
     }
 
-    console.log(status)
     return doc.update({
       answer: status
     })
