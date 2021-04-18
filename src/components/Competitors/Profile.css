@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 80%;
     height: 100%;
     margin-top: 40px;
 }
@@ -13,9 +13,11 @@
 .profileNameContainer {
     margin-top: 10px;
     display: flex;
+    flex: 1;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .profileName {
