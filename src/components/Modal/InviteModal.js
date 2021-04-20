@@ -92,7 +92,7 @@ function InviteModal(props) {
           <div className="greetingContainer">
             <h2 className="greetingName">Tjena {competitor.firstName + " " + competitor.lastName}!</h2>
             <p className="greetingText">Joinar du touren?</p>
-            <p className="greetingText">Det tillkommer en liten avgift på 500kr, för att hjälpa åt att täcka alla greenfees, samt till lite goa priser! Swisha till 0707-898878 om du hänkar på.</p>
+            <p className="greetingText">Det tillkommer en liten avgift på 500kr, för att hjälpas åt att täcka alla greenfees och till lite goa priser! Swisha till 0707-898878 om du hänkar på.</p>
             <ButtonGroup toggle className="mb-2">
               <ToggleButton
                 className="tglButtonLinear"
