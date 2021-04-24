@@ -16,9 +16,9 @@ const home = () => (
       </p>
       <p>Banor som ingår i Touren:</p>
       <ul>
-        <li>Hulta GK</li>
-        <li>Torrekulla GK</li>
-        <li>Sisjö GK</li>
+        <li>Hulta GK 12/9</li>
+        <li>Torrekulla GK 8/6</li>
+        <li>Sisjö GK 25/5</li>
       </ul>
     </div>
     <Intro></Intro>
