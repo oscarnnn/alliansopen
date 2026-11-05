@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Liveboarden är publik – alla får läsa.
+    // Bara admin (inloggad med Google) får skriva.
+    // Byt ut e-postadressen nedan mot adminens Google-konto.
+    match /seasons/{season} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email in ['ADMIN_EMAIL_HERE'];
+    }
+  }
+}
