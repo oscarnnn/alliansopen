@@ -57,15 +57,6 @@ export function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-[20%] -top-[30%] h-[80vmax] w-[80vmax] animate-float rounded-full bg-[radial-gradient(circle,rgba(61,220,132,0.22),transparent_60%)] blur-3xl" />
         <div className="absolute -right-[25%] top-[10%] h-[70vmax] w-[70vmax] animate-float rounded-full bg-[radial-gradient(circle,rgba(232,200,114,0.18),transparent_60%)] blur-3xl [animation-delay:-4s]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
-        <motion.div
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2.4, ease }}
-          className="absolute -bottom-[6vw] left-1/2 -translate-x-1/2 select-none font-display text-[38vw] leading-none text-white/[0.025]"
-        >
-          2026
-        </motion.div>
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink" />
       </div>
 
@@ -80,7 +71,6 @@ export function Hero() {
             <LiveDot active={phase !== "done"} />
             <span className="font-mono uppercase tracking-[0.2em] text-cream/90">{PHASE_LABEL[phase]}</span>
           </span>
-          <span className="eyebrow hidden sm:inline">Est. 2020 · Comeback 2026</span>
         </motion.div>
 
         <h1 className="font-display leading-[0.86] tracking-tight">
@@ -108,7 +98,7 @@ export function Hero() {
           <div>
             <p className="max-w-xl text-lg leading-relaxed text-cream/75 sm:text-xl">
               Åtta spelare. Tre spelomgångar. En lunch med tillgång till alkohol.
-              <span className="text-cream"> Och en vandringspokal som har väntat i sex år på att få flytta.</span>
+              <span className="text-cream"> Och en vandringspokal.</span>
             </p>
             <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-mute">
               {dateLabel && (

@@ -14,22 +14,6 @@ function signed(n: number) {
   return n > 0 ? `+${n}` : `${n}`;
 }
 
-function BonusChip({ label, value, pending, title }: { label: string; value: number; pending: boolean; title: string }) {
-  const tone = pending
-    ? "border-line text-mute/60"
-    : value > 0
-      ? "border-fairway/40 bg-fairway/10 text-fairway"
-      : value < 0
-        ? "border-flag/40 bg-flag/10 text-flag"
-        : "border-line text-cream/60";
-  return (
-    <span title={title} className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-mono text-[11px] ${tone}`}>
-      <span>{label}</span>
-      <span className="tabular-nums">{pending ? "·" : signed(value)}</span>
-    </span>
-  );
-}
-
 function Movement({ row }: { row: Row }) {
   if (row.prevProb == null) return null;
   const d = row.prob - row.prevProb;
@@ -62,7 +46,7 @@ function LiveRow({ row, leader, finalStarted, maxProb }: { row: Row; leader: boo
       )}
       <button
         onClick={() => setOpen((o) => !o)}
-        className="relative grid w-full grid-cols-[2rem_1fr_auto] items-center gap-3 px-3 py-3 text-left sm:grid-cols-[2.5rem_minmax(0,1.1fr)_minmax(15rem,1.1fr)_5rem_minmax(0,1fr)_5.5rem] sm:gap-4 sm:px-5 sm:py-4"
+        className="relative grid w-full grid-cols-[2rem_1fr_auto] items-center gap-3 px-3 py-3 text-left sm:grid-cols-[2.5rem_minmax(0,1.4fr)_6rem_5rem_minmax(0,1fr)_5.5rem] sm:gap-4 sm:px-5 sm:py-4"
         aria-expanded={open}
       >
         {/* Placering */}
@@ -77,11 +61,7 @@ function LiveRow({ row, leader, finalStarted, maxProb }: { row: Row; leader: boo
             <div className="truncate text-lg font-medium leading-tight">{row.player.name}</div>
             <div className="font-mono text-[11px] text-mute">
               hcp {row.player.hcp.toFixed(1)}
-              {b.total !== 0 && (
-                <>
-                  {" "}→ <span className={b.total > 0 ? "text-fairway" : "text-flag"}>{b.adjustedHcp.toFixed(1)}</span>
-                </>
-              )}
+              <span className="sm:hidden"> · spel {b.adjustedHcp.toFixed(1)}</span>
             </div>
             {/* Mobil: prob-bar */}
             <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/5 sm:hidden">
@@ -96,23 +76,16 @@ function LiveRow({ row, leader, finalStarted, maxProb }: { row: Row; leader: boo
           </div>
         </div>
 
-        {/* Bonusar */}
-        <div className="hidden flex-wrap gap-1 sm:flex">
-          <BonusChip
-            label="SCR"
-            value={b.scramble}
-            pending={b.scramblePlace == null}
-            title={b.scramblePlace ? `Scramble: plats ${b.scramblePlace}` : "Scramble ej avgjord"}
-          />
-          {MINI_KEYS.map((k) => (
-            <BonusChip
-              key={k}
-              label={MINI_LABELS[k].emoji}
-              value={b.minis[k]}
-              pending={b.miniRanks[k] == null}
-              title={`${MINI_LABELS[k].title}${b.miniRanks[k] ? `: plats ${b.miniRanks[k]}` : " – ej avgjord"}`}
-            />
-          ))}
+        {/* Spel-hcp */}
+        <div className="hidden text-center sm:block">
+          <div className="font-mono text-2xl tabular-nums">{b.adjustedHcp.toFixed(1)}</div>
+          <div
+            className={`font-mono text-[10px] uppercase tracking-widest ${
+              b.total > 0 ? "text-fairway" : b.total < 0 ? "text-flag" : "text-mute"
+            }`}
+          >
+            {b.total === 0 ? "±0" : signed(b.total)} bonus
+          </div>
         </div>
 
         {/* Finalrunda */}
@@ -245,10 +218,10 @@ export function Liveboard() {
         20 000 gånger. Oddsen är decimalodds med 8 % husmarginal – för husets äras skull.
       </SectionHeading>
 
-      <div className="mt-10 hidden grid-cols-[2.5rem_minmax(0,1.1fr)_minmax(15rem,1.1fr)_5rem_minmax(0,1fr)_5.5rem] gap-4 px-5 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-mute sm:grid">
+      <div className="mt-10 hidden grid-cols-[2.5rem_minmax(0,1.4fr)_6rem_5rem_minmax(0,1fr)_5.5rem] gap-4 px-5 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-mute sm:grid">
         <span>#</span>
         <span>Spelare</span>
-        <span>Bonus-hcp</span>
+        <span className="text-center">Spel-hcp</span>
         <span className="text-center">{finalStarted ? "Poäng" : "Prognos"}</span>
         <span>Vinstchans</span>
         <span className="pr-6 text-right">Odds</span>

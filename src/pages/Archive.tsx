@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ChevronLeft, ChevronRight, ExternalLink, Play, X } from "lucide-react";
 import { SectionHeading } from "../components/SectionHeading";
 import amtLogo from "../assets/archive/logos/AMTLogo.png";
+import antonImg from "../assets/players/Anton.png";
 
 const hultaModules = import.meta.glob<string>("../assets/archive/hulta/*.jpg", { eager: true, import: "default" });
 const hultaHoles = Object.entries(hultaModules)
@@ -12,6 +13,7 @@ const hultaHoles = Object.entries(hultaModules)
 const faceModules = import.meta.glob<string>("../assets/players/*.png", { eager: true, import: "default" });
 const oldFaces = Object.entries(faceModules)
   .map(([path, src]) => ({ name: path.split("/").pop()!.replace(".png", ""), src }))
+  .filter((f) => f.name !== "Perra") // Perra var aldrig med 2021 – han debuterar 2026
   .sort((a, b) => a.name.localeCompare(b.name, "sv"));
 
 // Resultat 2020 – första upplagan (slag/poäng per bana)
@@ -184,10 +186,7 @@ function HultaGallery() {
 
 function Year({ year, children }: { year: string; children: React.ReactNode }) {
   return (
-    <section className="relative mx-auto max-w-6xl px-4 py-16 sm:px-8">
-      <div className="pointer-events-none absolute -top-6 right-4 select-none font-display text-[22vw] leading-none text-white/[0.03] sm:right-8 sm:text-[12rem]">
-        {year}
-      </div>
+    <section id={`ar-${year}`} className="relative mx-auto max-w-6xl px-4 py-16 sm:px-8">
       {children}
     </section>
   );
@@ -206,8 +205,7 @@ export default function Archive() {
               Där allt <em className="gold-text">började</em>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-cream/65">
-              Intron, resultaten, banguiderna och de tveksamma profilbilderna från touren som tog en liten paus
-              mellan 2021 och 2026. Bevarat för eftervärlden. Och för pikarna.
+              Intron, resultaten, banguiden och de tveksamma profilbilderna från 2020 och 2021.
             </p>
           </div>
           <motion.div
@@ -224,8 +222,7 @@ export default function Archive() {
 
       <Year year="2020">
         <SectionHeading eyebrow="Upplaga I" title={<>Första <em className="text-cream/60">touren</em></>}>
-          Sisjön, Torrekulla och Hulta. Mest poäng totalt vinner. Oscar tog hem det med tre poängs marginal och har
-          sedan dess låtit vandringspokalen stå och glänsa i lägenheten.
+          Sisjön, Torrekulla och Hulta. Mest poäng totalt vinner. Oscar tog hem det med tre poängs marginal före Axel.
         </SectionHeading>
         <div className="mt-10 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
           <Video src="https://www.youtube.com/embed/vq5evQkb_0w" title="Intro 2020" />
@@ -260,27 +257,19 @@ export default function Archive() {
       </Year>
 
       <Year year="2021">
-        <SectionHeading eyebrow="Upplaga II" title={<>Touren som <em className="text-cream/60">aldrig</em> blev klar</>}>
-          ”Shaft-Shank Redemption är en trött liten tour som några av Göteborgs sämsta golflirare dragit igång. Vi
-          körde år 2020 och det var riktigt sköj, så vi kör i år igen.” Banor: Sisjö GK 25/5, Torrekulla GK 8/6 och
-          Hulta GK 12/9. Hulta-resultaten kom dock aldrig upp på sajten…
+        <SectionHeading eyebrow="Upplaga II" title={<>Antons <em className="text-cream/60">år</em></>}>
+          ”Shaft-Shank Redemption är en trött liten tour som några av Göteborgs sämsta golflirare dragit igång.” Banor:
+          Sisjö GK 25/5, Torrekulla GK 8/6 och Hulta GK 12/9. Anton tog ledningen tidigt och släppte den aldrig.
         </SectionHeading>
         <div className="mt-10 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
           <Video src="https://player.vimeo.com/video/534384659" title="Intro 2021" />
-          <div className="glass flex flex-col gap-4 rounded-3xl p-6">
-            <div className="eyebrow">Inbjudan 2021</div>
-            <p className="text-sm text-cream/70">
-              Man fick en personlig kod, skrev in den och fick välja. Avgift 500 kr ”för att hjälpas åt att täcka alla
-              greenfees och till lite goa priser”.
-            </p>
-            <div className="grid grid-cols-2 gap-2 text-center text-sm">
-              <div className="rounded-xl bg-fairway/15 px-3 py-3 text-fairway">Klart jag är där!</div>
-              <div className="rounded-xl bg-flag/15 px-3 py-3 text-flag">Nej för jag suger!</div>
+          <div className="glass flex flex-col items-start justify-between gap-6 rounded-3xl p-6">
+            <div>
+              <div className="eyebrow">Mästare 2021</div>
+              <div className="mt-2 font-display text-7xl gold-text">Anton</div>
+              <div className="mt-2 font-mono text-sm text-mute">Vann touren 2021</div>
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs text-mute">
-              <p>”Håååå, välkommen till touren kompis!”</p>
-              <p>”Ok, ha de gött då!”</p>
-            </div>
+            <img src={antonImg} alt="Anton" className="size-28 rounded-full object-cover ring-2 ring-gold/60" />
           </div>
         </div>
         <div className="mt-4">
@@ -288,7 +277,7 @@ export default function Archive() {
             head={["Spelare", "Sisjön", "Torrekulla", "Närmast pin", "Slag", "Poäng"]}
             rows={results2021.map((r) => [r.name, r.sisjon, r.torrekulla, r.pin, r.strokes, r.points])}
           />
-          <p className="mt-3 px-2 font-mono text-xs text-mute">Ställning efter två av tre banor – sista uppdateringen som gjordes.</p>
+          <p className="mt-3 px-2 font-mono text-xs text-mute">Ställning efter två av tre banor – Hulta-rundan fördes aldrig in på sajten, men Anton vann till slut.</p>
         </div>
       </Year>
 

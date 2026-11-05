@@ -3,7 +3,6 @@ import confetti from "canvas-confetti";
 import { motion } from "motion/react";
 import { Trophy } from "lucide-react";
 import { Hero } from "../components/Hero";
-import { OddsTicker } from "../components/OddsTicker";
 import { Liveboard } from "../components/Liveboard";
 import { OddsChart } from "../components/OddsChart";
 import { RoundsPanel } from "../components/RoundsPanel";
@@ -69,7 +68,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <OddsTicker />
       {done && <Champion />}
       <Liveboard />
       <OddsChart />

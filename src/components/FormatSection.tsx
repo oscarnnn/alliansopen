@@ -66,9 +66,6 @@ export function FormatSection() {
             transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="glass group relative flex flex-col overflow-hidden rounded-3xl p-6"
           >
-            <div className="absolute -right-6 -top-8 font-display text-[9rem] leading-none text-white/[0.03] transition group-hover:text-gold/[0.07]">
-              {i + 1}
-            </div>
             <s.icon className="size-6 text-gold" />
             <div className="eyebrow mt-6">{s.tag}</div>
             <h3 className="mt-1 font-display text-3xl leading-tight">{s.title}</h3>

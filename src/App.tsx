@@ -33,7 +33,11 @@ function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
       <nav
         className={`mx-auto flex max-w-6xl items-center justify-between rounded-full px-3 py-2 transition-all duration-500 sm:px-4 ${
-          scrolled || open ? "glass shadow-2xl shadow-black/40" : "border border-transparent"
+          open
+            ? "border border-line bg-ink-2 shadow-2xl shadow-black/60"
+            : scrolled
+              ? "glass shadow-2xl shadow-black/40"
+              : "border border-transparent"
         }`}
       >
         <Link to="/" className="flex items-center gap-2.5">
@@ -81,7 +85,7 @@ function Nav() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="glass mx-auto mt-2 max-w-6xl rounded-3xl p-3 md:hidden"
+            className="mx-auto mt-2 max-w-6xl rounded-3xl border border-line bg-ink-2 p-3 shadow-2xl shadow-black/60 md:hidden"
           >
             {links.map((l) => (
               <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="block rounded-2xl px-4 py-3 font-display text-2xl">
@@ -151,7 +155,7 @@ function Footer() {
 
 export default function App() {
   return (
-    <div className="grain min-h-svh">
+    <div className="min-h-svh">
       <ScrollManager />
       <Nav />
       <main>
