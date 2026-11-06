@@ -24,16 +24,20 @@ export const PLAYER_COLORS = [
   "#a3e635", "#fb923c", "#c084fc", "#f87171",
 ];
 
-const avatarModules = import.meta.glob<string>("../assets/players/*.png", {
-  eager: true,
-  import: "default",
-});
+// 2026-bilder går före; de gamla från 2021 är reserv.
+const avatarModules = {
+  ...import.meta.glob<string>("../assets/players/*.png", { eager: true, import: "default" }),
+  ...import.meta.glob<string>("../assets/players-2026/*.jpg", { eager: true, import: "default" }),
+};
+
+const avatarByName = new Map<string, string>();
+for (const [path, url] of Object.entries(avatarModules)) {
+  const name = path.split("/").pop()!.replace(/\.\w+$/, "").toLowerCase();
+  if (path.includes("players-2026") || !avatarByName.has(name)) avatarByName.set(name, url);
+}
 
 export function avatarFor(name: string): string | undefined {
-  const key = Object.keys(avatarModules).find((k) =>
-    k.toLowerCase().endsWith(`/${name.toLowerCase()}.png`),
-  );
-  return key ? avatarModules[key] : undefined;
+  return avatarByName.get(name.toLowerCase());
 }
 
 export function createInitialTournament(): Tournament {
