@@ -7,6 +7,7 @@ import { buildRows } from "../lib/view";
 import { decimalOdds, formatPct } from "../lib/odds";
 import { Avatar } from "./Avatar";
 import { LiveDot } from "./LiveDot";
+import { IntroVideo } from "./IntroVideo";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -129,6 +130,7 @@ export function Hero() {
                 ))}
               </div>
             )}
+            <IntroVideo />
           </div>
 
           {favourite && (
