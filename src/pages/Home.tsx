@@ -7,6 +7,7 @@ import { Liveboard } from "../components/Liveboard";
 import { OddsChart } from "../components/OddsChart";
 import { RoundsPanel } from "../components/RoundsPanel";
 import { FormatSection } from "../components/FormatSection";
+import { CourseGuide } from "../components/CourseGuide";
 import { Avatar } from "../components/Avatar";
 import { useTournament } from "../lib/store";
 import { currentPhase, formatToPar } from "../lib/scoring";
@@ -74,6 +75,7 @@ export default function Home() {
       <OddsChart />
       <RoundsPanel />
       <FormatSection />
+      <CourseGuide />
     </>
   );
 }

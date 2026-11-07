@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { ChevronLeft, ChevronRight, ExternalLink, Play, X } from "lucide-react";
+import { useState } from "react";
+import { motion } from "motion/react";
+import { ExternalLink, Play } from "lucide-react";
 import { SectionHeading } from "../components/SectionHeading";
+import { HoleLightbox } from "../components/HoleLightbox";
 import amtLogo from "../assets/archive/logos/AMTLogo.png";
 import antonImg from "../assets/players/Anton.png";
 
@@ -9,6 +10,7 @@ const hultaModules = import.meta.glob<string>("../assets/archive/hulta/*.jpg", {
 const hultaHoles = Object.entries(hultaModules)
   .map(([path, src]) => ({ hole: Number(path.match(/Hulta(\d+)\.jpg$/)?.[1] ?? 0), src }))
   .sort((a, b) => a.hole - b.hole);
+const hultaImages = hultaHoles.map((h) => ({ src: h.src, alt: `Hulta hål ${h.hole}` }));
 
 const faceModules = import.meta.glob<string>("../assets/players/*.png", { eager: true, import: "default" });
 const oldFaces = Object.entries(faceModules)
@@ -109,17 +111,6 @@ function Table({ head, rows }: { head: string[]; rows: (string | number)[][] }) 
 
 function HultaGallery() {
   const [index, setIndex] = useState<number | null>(null);
-  useEffect(() => {
-    if (index == null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIndex(null);
-      if (e.key === "ArrowRight") setIndex((i) => (i! + 1) % hultaHoles.length);
-      if (e.key === "ArrowLeft") setIndex((i) => (i! - 1 + hultaHoles.length) % hultaHoles.length);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [index]);
-
   return (
     <>
       <div className="flex snap-x gap-3 overflow-x-auto pb-4 [scrollbar-width:thin]">
@@ -136,50 +127,7 @@ function HultaGallery() {
           </button>
         ))}
       </div>
-      <AnimatePresence>
-        {index != null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] grid place-items-center bg-ink/90 p-4 backdrop-blur-xl"
-            onClick={() => setIndex(null)}
-          >
-            <motion.img
-              key={index}
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              src={hultaHoles[index].src}
-              alt={`Hulta hål ${hultaHoles[index].hole}`}
-              className="max-h-[88svh] rounded-2xl shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
-            <button className="absolute right-4 top-4 grid size-11 place-items-center rounded-full bg-white/10" aria-label="Stäng">
-              <X />
-            </button>
-            <button
-              className="absolute left-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIndex((i) => (i! - 1 + hultaHoles.length) % hultaHoles.length);
-              }}
-              aria-label="Föregående"
-            >
-              <ChevronLeft />
-            </button>
-            <button
-              className="absolute right-3 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/10"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIndex((i) => (i! + 1) % hultaHoles.length);
-              }}
-              aria-label="Nästa"
-            >
-              <ChevronRight />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <HoleLightbox images={hultaImages} index={index} onChange={setIndex} />
     </>
   );
 }

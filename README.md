@@ -4,6 +4,7 @@ Liveboard med odds för touren. Vite + React 19 + TypeScript + Tailwind 4 + Moti
 
 - `/` – hero, live-odds, liveboard, oddsgraf, scramble/småtävlingar, format
 - `/admin` – admin för in resultat (lottning, scramble, småtävlingar, finalrunda) och publicerar
+- Startsidan har en banguide för 2026 (Pebble Beach 10–18 och TPC Sawgrass). Egna hålbilder kan läggas i `src/assets/courses/<pebble|sawgrass>/<hål>.jpg`.
 - `/arkiv` – 2020 & 2021: intron, resultat, Hulta-banguiden och de gamla profilbilderna
 
 ## Kom igång
