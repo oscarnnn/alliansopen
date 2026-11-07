@@ -74,9 +74,9 @@ export function RoundsPanel() {
                   </div>
                   <div className="mt-3 font-display text-2xl leading-tight">{team.members.map(name).join(" & ")}</div>
                   <div className="mt-4 grid grid-cols-3 gap-2 font-mono text-xs">
-                    <Stat label="Lag-hcp" value={teamHcp(team, data.players).toFixed(1)} />
+                    <Stat label="Lag-hcp" value={teamHcp(team, data.players).toFixed(1)} sub={`${teamStrokes(team, data.players)} slag på 9 hål`} />
                     <Stat label="Brutto" value={data.scramble.gross[i] ?? "–"} />
-                    <Stat label="Netto" value={net ?? "–"} sub={`−${teamStrokes(team, data.players)}`} />
+                    <Stat label="Netto" value={net ?? "–"} sub={net != null ? `brutto − ${teamStrokes(team, data.players)}` : undefined} />
                   </div>
                   {place && (
                     <div className="mt-4 rounded-xl bg-fairway/10 px-3 py-2 text-center font-mono text-sm text-fairway">
