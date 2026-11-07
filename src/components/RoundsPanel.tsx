@@ -53,7 +53,7 @@ export function RoundsPanel() {
             <Shuffle className="size-8 text-gold" />
             <div className="font-display text-2xl">Lagen är inte lottade än</div>
             <p className="max-w-sm text-sm text-mute">
-              Lottningen sker på plats. Lagets hcp blir medelvärdet av spelarnas hcp, och på nio hål får laget halva det.
+              Lottningen sker på plats. Lagets hcp räknas enligt svenska regler: spelaren med lägre hcp × 0,5 plus spelaren med högre × 0,2. På nio hål räknas varje spelares hcp om till nio hål först, och summan avrundas till närmaste heltal.
             </p>
           </Card>
         ) : (

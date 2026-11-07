@@ -7,7 +7,7 @@ const steps = [
     icon: Users,
     tag: "Spelomgång 1",
     title: "2-manna scramble",
-    body: "Nio hål. Lagen lottas. Lagets hcp = medelvärdet av spelarnas hcp.",
+    body: "Nio hål. Lagen lottas. Lagets hcp enligt svenska regler: lägre hcp × 0,5 + högre × 0,2, avrundat till heltal.",
     rules: [
       ["1:a plats", "+3 hcp"],
       ["2:a plats", "+2 hcp"],

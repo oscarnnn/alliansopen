@@ -19,19 +19,29 @@ export function miniBonusForRank(rank: number | null | undefined, playerCount: n
 
 export const round1 = (n: number) => Math.round(n * 10) / 10;
 
+/** Svenska regler för tvåmannalag: lägre spel-hcp × 0,5 + högre × 0,2. */
+const TEAM_WEIGHTS = [0.5, 0.2];
+
 function exactTeamHcp(team: Team, players: Player[]): number {
-  const hcps = team.members.map((id) => players.find((p) => p.id === id)?.hcp ?? 0);
-  return hcps.reduce((a, b) => a + b, 0) / Math.max(1, hcps.length);
+  const hcps = team.members.map((id) => players.find((p) => p.id === id)?.hcp ?? 0).sort((a, b) => a - b);
+  if (hcps.length !== TEAM_WEIGHTS.length) {
+    // Reservregel för lag som inte är två spelare: medelvärdet.
+    return hcps.reduce((a, b) => a + b, 0) / Math.max(1, hcps.length);
+  }
+  return hcps.reduce((sum, h, i) => sum + h * TEAM_WEIGHTS[i], 0);
 }
 
-/** Lagets hcp = medelvärdet av spelarnas hcp (avrundat för visning). */
+/** Lagets hcp över 18 hål (0,5 × lägre + 0,2 × högre), en decimal för visning. */
 export function teamHcp(team: Team, players: Player[]): number {
   return round1(exactTeamHcp(team, players));
 }
 
-/** 9 hål → laget får halva medel-hcp:t i slag. Räknas på exakt medel (ingen dubbelavrundning). */
+/**
+ * Lagets slag på 9 hål: spelarnas hcp halveras till 9 hål, viktas 0,5/0,2
+ * och summan avrundas till närmaste heltal (inga decimaler före avrundningen).
+ */
 export function teamStrokes(team: Team, players: Player[]): number {
-  return round1(exactTeamHcp(team, players) / 2);
+  return Math.round(exactTeamHcp(team, players) / 2);
 }
 
 export function teamNet(t: Tournament, teamIndex: number): number | null {
