@@ -1,5 +1,5 @@
 import { MINI_KEYS } from "./players";
-import { miniBonusForRank, scrambleBonusForPlace, scramblePlaces, shuffle } from "./scoring";
+import { effectiveThru, miniBonusForRank, scrambleBonusForPlace, scramblePlaces, shuffle } from "./scoring";
 import type { MiniKey, Player, PlayerId, Team, Tournament } from "./types";
 
 /**
@@ -8,9 +8,11 @@ import type { MiniKey, Player, PlayerId, Team, Tournament } from "./types";
  * Modell (medvetet enkel, men rimlig för amatörgolf):
  *  - Okända scramble-placeringar slumpas bland de lag som inte fått plats.
  *  - Okända småtävlingar avgörs av "skicklighet + tur": lägre hcp ger en liten fördel.
- *  - Finalrundan: förväntade stablefordpoäng ≈ 34 − 0,08·hcp + bonusslag,
- *    spridning ≈ 3,5 + 0,1·hcp (högre hcp = mer kaos, både uppåt och nedåt).
- *  - Pågående runda: spelade poäng + förväntat på kvarvarande hål.
+ *  - Finalrundan är slaggolf: netto = bruttoslag − spel-hcp, lägst vinner.
+ *    Förväntade bruttoslag ≈ par + 1,05·hcp + 3 (amatörer spelar sällan på sitt hcp),
+ *    spridning ≈ 3,5 + 0,12·hcp slag (högre hcp = mer kaos, åt båda hållen).
+ *    Varje bonusslag i hcp drar alltså av exakt ett slag på nettot.
+ *  - Pågående runda: spelade slag + förväntade slag på kvarvarande hål.
  */
 
 export const SIMULATIONS = 20000;
@@ -18,6 +20,7 @@ export const BOOKIE_MARGIN = 0.08;
 
 export interface OddsResult {
   probs: Record<PlayerId, number>;
+  /** Förväntat netto mot par efter 18 hål */
   expected: Record<PlayerId, number>;
 }
 
@@ -48,8 +51,8 @@ function gaussian(rand: () => number): number {
   return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
 }
 
-export const expectedPoints = (hcp: number) => 34 - 0.08 * hcp;
-export const pointsSpread = (hcp: number) => 3.5 + 0.1 * hcp;
+export const expectedGross = (hcp: number, par: number) => par + 1.05 * hcp + 3;
+export const strokesSpread = (hcp: number) => 3.5 + 0.12 * hcp;
 
 function pairUp(ids: PlayerId[]): Team[] {
   const teams: Team[] = [];
@@ -63,6 +66,7 @@ export function computeOdds(t: Tournament, sims = SIMULATIONS): OddsResult {
   // Deterministisk seed => alla besökare ser exakt samma odds för samma läge.
   const seedSource = JSON.stringify({
     p: players,
+    par: t.par,
     te: t.teams,
     s: t.scramble,
     m: t.minis,
@@ -102,26 +106,26 @@ export function computeOdds(t: Tournament, sims = SIMULATIONS): OddsResult {
       });
     }
 
-    // --- Spelomgång 3: finalrundan ---
-    let best = -Infinity;
+    // --- Spelomgång 3: finalrundan (slaggolf, lägst netto vinner) ---
+    let best = Infinity;
     let leaders: number[] = [];
     for (let k = 0; k < n; k++) {
       const p = players[k];
-      const f = t.final[p.id] ?? { points: null, thru: 0 };
-      const thru = Math.min(18, Math.max(0, f.thru || 0));
-      const played = f.points ?? 0;
+      const f = t.final[p.id];
+      const thru = effectiveThru(f);
       const remaining = (18 - thru) / 18;
-      let score = played;
+      let gross = f?.strokes ?? 0;
       if (remaining > 0) {
-        const mean = (expectedPoints(p.hcp) + bonus[k] * 0.95) * remaining;
-        score += mean + gaussian(rand) * pointsSpread(p.hcp) * Math.sqrt(remaining);
-        score = Math.round(score);
+        gross += expectedGross(p.hcp, t.par) * remaining;
+        gross += gaussian(rand) * strokesSpread(p.hcp) * Math.sqrt(remaining);
+        gross = Math.round(gross);
       }
-      totals[p.id] += score;
-      if (score > best) {
-        best = score;
+      const net = gross - (p.hcp + bonus[k]);
+      totals[p.id] += net - t.par;
+      if (net < best - 1e-9) {
+        best = net;
         leaders = [k];
-      } else if (score === best) {
+      } else if (Math.abs(net - best) < 1e-9) {
         leaders.push(k);
       }
     }

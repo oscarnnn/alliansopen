@@ -9,13 +9,13 @@ import { RoundsPanel } from "../components/RoundsPanel";
 import { FormatSection } from "../components/FormatSection";
 import { Avatar } from "../components/Avatar";
 import { useTournament } from "../lib/store";
-import { currentPhase } from "../lib/scoring";
+import { currentPhase, formatToPar } from "../lib/scoring";
 import { buildRows } from "../lib/view";
 
 function Champion() {
   const { data, odds } = useTournament();
   const rows = buildRows(data, odds);
-  const top = rows.filter((r) => r.points === rows[0]?.points);
+  const top = rows.filter((r) => r.toPar === rows[0]?.toPar);
   const fired = useRef(false);
 
   useEffect(() => {
@@ -54,7 +54,8 @@ function Champion() {
             <span className="gold-text">{top.map((r) => r.player.name).join(" & ")}</span>
           </h2>
           <p className="mt-3 font-mono text-sm text-cream/70">
-            {rows[0].points} poäng · spel-hcp {rows[0].breakdown.adjustedHcp.toFixed(1)}
+            {rows[0].strokes} slag · netto {rows[0].net} ({formatToPar(rows[0].toPar)}) · spel-hcp{" "}
+            {rows[0].breakdown.adjustedHcp.toFixed(1)}
           </p>
         </div>
       </motion.div>

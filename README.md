@@ -36,8 +36,9 @@ Data ligger i dokumentet `seasons/2026`. Alla läser, bara admin skriver.
 ## Oddsen
 
 Monte Carlo (20 000 simuleringar) av allt som inte är spelat: lottning, scramble, småtävlingar och finalrundan.
-Förväntade stablefordpoäng ≈ 34 − 0,08·hcp + bonusslag, spridning ≈ 3,5 + 0,1·hcp.
-Under finalen räknas spelade poäng + förväntat på återstående hål. Odds = 0,92 / sannolikhet.
+Finalen är slaggolf: netto = bruttoslag − spel-hcp, lägst vinner. Förväntade bruttoslag ≈ par + 1,05·hcp + 3,
+spridning ≈ 3,5 + 0,12·hcp. Under finalen räknas spelade slag + förväntat på återstående hål.
+Odds = 0,92 / sannolikhet.
 Se `src/lib/odds.ts` och reglerna i `src/lib/scoring.ts`.
 
 ## Deploy

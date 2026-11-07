@@ -9,8 +9,8 @@ export interface Player {
 export type MiniKey = "longestDrive" | "closestPin" | "accuracy";
 
 export interface FinalScore {
-  /** Stablefordpoäng hittills */
-  points: number | null;
+  /** Bruttoslag hittills (slaggolf) */
+  strokes: number | null;
   /** Antal spelade hål (0–18) */
   thru: number;
 }
@@ -25,6 +25,8 @@ export interface Tournament {
   name: string;
   eventDate: string | null; // ISO-datum, t.ex. "2026-05-30T09:00"
   venue: string;
+  /** Banans par – används för netto mot par under rundan */
+  par: number;
   players: Player[];
   /** Lottade 2-mannalag (spelar-id:n). Null = inte lottat än. */
   teams: Team[] | null;

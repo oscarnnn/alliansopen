@@ -46,11 +46,12 @@ export function createInitialTournament(): Tournament {
     name: "Shaft-Shank Redemption 2026",
     eventDate: null,
     venue: "",
+    par: 72,
     players: INITIAL_PLAYERS,
     teams: null,
     scramble: { gross: [null, null, null, null], place: [null, null, null, null] },
     minis: { longestDrive: { ...empty }, closestPin: { ...empty }, accuracy: { ...empty } },
-    final: Object.fromEntries(INITIAL_PLAYERS.map((p) => [p.id, { points: null, thru: 0 }])),
+    final: Object.fromEntries(INITIAL_PLAYERS.map((p) => [p.id, { strokes: null, thru: 0 }])),
     history: [],
     updatedAt: Date.now(),
   };
@@ -77,7 +78,13 @@ export function normalizeTournament(raw: Partial<Tournament> | undefined | null)
       closestPin: fill(raw.minis?.closestPin, null),
       accuracy: fill(raw.minis?.accuracy, null),
     },
-    final: fill(raw.final, { points: null, thru: 0 }),
+    par: typeof raw.par === "number" && raw.par > 0 ? raw.par : base.par,
+    final: Object.fromEntries(
+      players.map((p) => {
+        const f = raw.final?.[p.id];
+        return [p.id, { strokes: f?.strokes ?? null, thru: f?.thru ?? 0 }];
+      }),
+    ),
     history: raw.history ?? [],
   };
 }

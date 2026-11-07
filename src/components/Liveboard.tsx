@@ -4,7 +4,7 @@ import { ChevronDown, Crown, TrendingDown, TrendingUp } from "lucide-react";
 import { useTournament } from "../lib/store";
 import { buildRows, formatThru, relativeTime, type Row } from "../lib/view";
 import { decimalOdds, formatPct } from "../lib/odds";
-import { currentPhase } from "../lib/scoring";
+import { currentPhase, formatToPar } from "../lib/scoring";
 import { MINI_KEYS, MINI_LABELS } from "../lib/players";
 import { Avatar } from "./Avatar";
 import { LiveDot } from "./LiveDot";
@@ -90,11 +90,15 @@ function LiveRow({ row, leader, finalStarted, maxProb }: { row: Row; leader: boo
 
         {/* Finalrunda */}
         <div className="hidden text-center sm:block">
-          <div className={`font-mono text-2xl tabular-nums ${finalStarted ? "" : "text-cream/40"}`}>
-            {finalStarted ? row.points ?? "–" : row.expected.toFixed(0)}
+          <div
+            className={`font-mono text-2xl tabular-nums ${
+              !finalStarted ? "text-cream/40" : row.toPar != null && row.toPar < 0 ? "text-fairway" : ""
+            }`}
+          >
+            {finalStarted ? formatToPar(row.toPar) : formatToPar(Math.round(row.expected))}
           </div>
           <div className="font-mono text-[10px] uppercase tracking-widest text-mute">
-            {finalStarted ? `hål ${formatThru(row.thru, row.points)}` : "poäng"}
+            {finalStarted ? (row.strokes != null ? `${row.strokes} slag · ${formatThru(row.thru)}` : "ej startad") : "prognos"}
           </div>
         </div>
 
@@ -126,7 +130,7 @@ function LiveRow({ row, leader, finalStarted, maxProb }: { row: Row; leader: boo
               {decimalOdds(row.prob)}
             </div>
             <div className="mt-1 font-mono text-[10px] text-mute sm:hidden">
-              {finalStarted ? `${row.points ?? "–"} p · ${formatThru(row.thru, row.points)}` : formatPct(row.prob)}
+              {finalStarted ? `${formatToPar(row.toPar)} · ${formatThru(row.thru)}` : formatPct(row.prob)}
             </div>
           </div>
           <ChevronDown className={`hidden size-4 text-mute transition sm:block ${open ? "rotate-180" : ""}`} />
@@ -170,8 +174,22 @@ function LiveRow({ row, leader, finalStarted, maxProb }: { row: Row; leader: boo
                 sub={`${signed(b.total)} i bonus`}
                 highlight
               />
-              <Detail label="Förväntade poäng" value={`${row.expected.toFixed(1)} p`} sub="enligt simuleringen" />
-              <Detail label="Finalrunda" value={row.points != null ? `${row.points} p` : "–"} sub={row.thru ? `efter ${row.thru} hål` : "ej startad"} />
+              <Detail
+                label="Förväntat netto"
+                value={formatToPar(Math.round(row.expected))}
+                sub="mot par, enligt simuleringen"
+              />
+              <Detail
+                label="Finalrunda"
+                value={row.strokes != null ? `${row.strokes} slag` : "–"}
+                sub={
+                  row.net != null
+                    ? `netto ${row.net} (${formatToPar(row.toPar)})`
+                    : row.thru
+                      ? `${formatToPar(row.toPar)} efter ${row.thru} hål`
+                      : "ej startad"
+                }
+              />
             </div>
           </motion.div>
         )}
@@ -222,7 +240,7 @@ export function Liveboard() {
         <span>#</span>
         <span>Spelare</span>
         <span className="text-center">Spel-hcp</span>
-        <span className="text-center">{finalStarted ? "Poäng" : "Prognos"}</span>
+        <span className="text-center">Netto</span>
         <span>Vinstchans</span>
         <span className="pr-6 text-right">Odds</span>
       </div>

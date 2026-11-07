@@ -37,8 +37,11 @@ const steps = [
     icon: Flag,
     tag: "Spelomgång 3",
     title: "Individuell 18-hålsrunda",
-    body: "Ditt vanliga hcp plus/minus allt du kammat ihop under dagen. Bäst poäng vinner. Inget annat räknas.",
-    rules: [["Vinnare", "Flest poäng"]],
+    body: "Slaggolf. Ditt vanliga hcp plus/minus allt du kammat ihop under dagen dras av från dina slag. Lägst netto vinner. Inget annat räknas.",
+    rules: [
+      ["Netto", "Slag − spel-hcp"],
+      ["Vinnare", "Lägst netto"],
+    ],
   },
 ];
 
@@ -92,7 +95,7 @@ export function FormatSection() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <Trophy className="size-10 shrink-0 text-gold" />
           <p className="font-display text-2xl leading-snug sm:text-3xl">
-            Spel-hcp i finalen = ditt hcp + scramblebonus + småtävlingsbonus. Den som har bäst poäng på sista
+            Spel-hcp i finalen = ditt hcp + scramblebonus + småtävlingsbonus. Den som har lägst nettoscore på sista
             rundan tar med sig pokalen hem.
           </p>
         </div>
@@ -108,11 +111,11 @@ export function FormatSection() {
             scrambleplaceringar, småtävlingar och finalrundan.
           </p>
           <p>
-            <b className="text-cream">Finalrundan.</b> Förväntade poäng ≈ 34 − 0,08 × hcp + bonusslagen. Spridningen
-            växer med hcp – en 30-banare kan göra 45 poäng. Eller 19.
+            <b className="text-cream">Finalrundan.</b> Förväntade bruttoslag ≈ par + 1,05 × hcp + 3. Varje bonusslag
+            drar bort ett slag på nettot. Spridningen växer med hcp – en 30-banare kan gå på 95. Eller 120.
           </p>
           <p>
-            <b className="text-cream">Live.</b> Under finalen räknas spelade poäng plus förväntade poäng på de hål som
+            <b className="text-cream">Live.</b> Under finalen räknas spelade slag plus förväntade slag på de hål som
             återstår. Oddsen = 0,92 / sannolikheten.
           </p>
         </div>

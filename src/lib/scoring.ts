@@ -1,5 +1,5 @@
 import { MINI_KEYS } from "./players";
-import type { MiniKey, Player, PlayerId, Team, Tournament } from "./types";
+import type { FinalScore, MiniKey, Player, PlayerId, Team, Tournament } from "./types";
 
 /** Bonus i hcp-slag för placering i scramblen (index 0 = 1:a plats). */
 export const SCRAMBLE_BONUS = [3, 2, 1, 0];
@@ -89,12 +89,43 @@ export function breakdownFor(t: Tournament, player: Player): Breakdown {
   };
 }
 
+/** Slag ifyllda men inga hål angivna = rundan räknas som klar. */
+export function effectiveThru(f: FinalScore | undefined): number {
+  if (!f) return 0;
+  const thru = Math.min(18, Math.max(0, f.thru || 0));
+  return thru === 0 && f.strokes != null ? 18 : thru;
+}
+
+/** Netto mot par hittills: slag − (par + spel-hcp) × andel spelade hål. */
+export function netToPar(t: Tournament, player: Player): number | null {
+  const f = t.final[player.id];
+  if (!f || f.strokes == null) return null;
+  const share = effectiveThru(f) / 18;
+  const { adjustedHcp } = breakdownFor(t, player);
+  return round1(f.strokes - (t.par + adjustedHcp) * share);
+}
+
+/** Nettoscore för en färdig runda: slag − spel-hcp. */
+export function netScore(t: Tournament, player: Player): number | null {
+  const f = t.final[player.id];
+  if (!f || f.strokes == null || effectiveThru(f) < 18) return null;
+  return round1(f.strokes - breakdownFor(t, player).adjustedHcp);
+}
+
+export function formatToPar(n: number | null | undefined): string {
+  if (n == null || Number.isNaN(n)) return "–";
+  const v = round1(n);
+  if (v === 0) return "±0";
+  const abs = Number.isInteger(v) ? String(Math.abs(v)) : Math.abs(v).toFixed(1);
+  return v > 0 ? `+${abs}` : `−${abs}`;
+}
+
 export type Phase = "pre" | "scramble" | "minis" | "final" | "done";
 
 export function currentPhase(t: Tournament): Phase {
   const finals = t.players.map((p) => t.final[p.id]);
-  if (finals.every((f) => f && f.thru >= 18 && f.points != null)) return "done";
-  if (finals.some((f) => f && (f.thru > 0 || f.points != null))) return "final";
+  if (finals.every((f) => f && f.strokes != null && effectiveThru(f) >= 18)) return "done";
+  if (finals.some((f) => f && (f.thru > 0 || f.strokes != null))) return "final";
   const anyMini = MINI_KEYS.some((k) => Object.values(t.minis[k]).some((r) => r != null));
   const placesDone = scramblePlaces(t).length > 0 && scramblePlaces(t).every((p) => p != null);
   if (anyMini || placesDone) return "minis";

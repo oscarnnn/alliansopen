@@ -18,7 +18,17 @@ import {
 import { useTournament } from "../lib/store";
 import { createInitialTournament, MINI_KEYS, MINI_LABELS } from "../lib/players";
 import { computeOdds, decimalOdds, formatPct } from "../lib/odds";
-import { breakdownFor, drawTeams, scramblePlaces, teamHcp, teamNet, teamStrokes } from "../lib/scoring";
+import {
+  breakdownFor,
+  drawTeams,
+  effectiveThru,
+  formatToPar,
+  netToPar,
+  scramblePlaces,
+  teamHcp,
+  teamNet,
+  teamStrokes,
+} from "../lib/scoring";
 import { colorFor } from "../lib/view";
 import type { MiniKey, Tournament } from "../lib/types";
 import { Avatar } from "../components/Avatar";
@@ -47,7 +57,7 @@ function Login() {
         </div>
         <h1 className="mt-6 font-display text-5xl">Admin</h1>
         <p className="mt-3 text-sm text-mute">
-          Här förs poängen in efter varje avslutad omgång. Alla andra ser liveboarden direkt.
+          Här förs resultaten in efter varje avslutad omgång. Alla andra ser liveboarden direkt.
         </p>
         {user && !isAdmin && (
           <p className="mt-4 rounded-xl bg-flag/10 p-3 text-sm text-flag">
@@ -72,14 +82,20 @@ function NumberStepper({
   min = 0,
   max = 99,
   placeholder = "–",
+  start,
 }: {
   value: number | null;
   onChange: (v: number | null) => void;
   min?: number;
   max?: number;
   placeholder?: string;
+  /** Värde att hoppa till första gången man trycker +/− på ett tomt fält */
+  start?: number;
 }) {
-  const step = (d: number) => onChange(Math.min(max, Math.max(min, (value ?? (d > 0 ? min - 1 : min + 1)) + d)));
+  const step = (d: number) => {
+    if (value == null && start != null) return onChange(start);
+    onChange(Math.min(max, Math.max(min, (value ?? (d > 0 ? min - 1 : min + 1)) + d)));
+  };
   return (
     <div className="flex items-center rounded-xl border border-line bg-white/[0.03]">
       <button type="button" className="grid size-10 place-items-center text-mute hover:text-cream" onClick={() => step(-1)} aria-label="Minska">
@@ -308,29 +324,45 @@ function FinalTab({ draft, set }: { draft: Tournament; set: (fn: (t: Tournament)
   return (
     <div className="space-y-2">
       <p className="px-2 pb-2 text-sm text-mute">
-        Fyll i stablefordpoäng och antal spelade hål. Kan uppdateras under rundan för live-odds, eller bara en gång när
-        rundan är klar (sätt hål till 18).
+        Slaggolf: fyll i bruttoslag och antal spelade hål. Netto = slag − spel-hcp, lägst netto vinner. Uppdatera
+        gärna under rundan för live-odds, eller bara en gång när rundan är klar (fyller du i slag utan hål räknas
+        rundan som klar).
       </p>
       {draft.players.map((p) => {
         const f = draft.final[p.id];
         const b = breakdownFor(draft, p);
+        const thru = effectiveThru(f);
+        const toPar = netToPar(draft, p);
         return (
           <div key={p.id} className="glass flex flex-wrap items-center gap-3 rounded-2xl p-3 sm:flex-nowrap sm:gap-5 sm:px-5">
             <div className="flex min-w-0 flex-1 items-center gap-3">
               <Avatar name={p.name} color={colorFor(draft, p.id)} size={40} />
               <div className="min-w-0">
                 <div className="font-medium">{p.name}</div>
-                <div className="font-mono text-[11px] text-mute">spel-hcp {b.adjustedHcp.toFixed(1)}</div>
+                <div className="font-mono text-[11px] text-mute">
+                  spel-hcp {b.adjustedHcp.toFixed(1)}
+                  {f.strokes != null && (
+                    <>
+                      {" · "}
+                      <span className={toPar != null && toPar < 0 ? "text-fairway" : "text-cream"}>
+                        {thru >= 18
+                          ? `netto ${(f.strokes - b.adjustedHcp).toFixed(1)} (${formatToPar(toPar)})`
+                          : `${formatToPar(toPar)} efter ${thru}`}
+                      </span>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] uppercase tracking-wider text-mute">Poäng</span>
+              <span className="text-[11px] uppercase tracking-wider text-mute">Slag</span>
               <NumberStepper
-                value={f.points}
-                max={72}
+                value={f.strokes}
+                max={250}
+                start={f.thru > 0 ? Math.round(((draft.par + p.hcp) * f.thru) / 18) : draft.par + Math.round(p.hcp)}
                 onChange={(v) =>
                   set((t) => {
-                    t.final[p.id].points = v;
+                    t.final[p.id].strokes = v;
                   })
                 }
               />
@@ -349,7 +381,7 @@ function FinalTab({ draft, set }: { draft: Tournament; set: (fn: (t: Tournament)
               />
               <button
                 className={`grid size-10 place-items-center rounded-xl border font-mono text-xs ${
-                  f.thru >= 18 ? "border-fairway/50 bg-fairway/15 text-fairway" : "border-line text-mute hover:text-cream"
+                  thru >= 18 ? "border-fairway/50 bg-fairway/15 text-fairway" : "border-line text-mute hover:text-cream"
                 }`}
                 onClick={() =>
                   set((t) => {
@@ -428,6 +460,20 @@ function SettingsTab({ draft, set }: { draft: Tournament; set: (fn: (t: Tourname
             onChange={(e) =>
               set((t) => {
                 t.venue = e.target.value;
+              })
+            }
+          />
+        </label>
+        <label>
+          <div className="mb-1 text-[11px] uppercase tracking-wider text-mute">Banans par (finalrundan)</div>
+          <input
+            type="number"
+            inputMode="numeric"
+            className="field font-mono"
+            value={draft.par}
+            onChange={(e) =>
+              set((t) => {
+                t.par = Number(e.target.value) || 72;
               })
             }
           />
