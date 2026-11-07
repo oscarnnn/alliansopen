@@ -13,7 +13,6 @@ const links = [
   { to: "/#odds", label: "Odds" },
   { to: "/#omgangar", label: "Omgångar" },
   { to: "/#format", label: "Format" },
-  { to: "/#banor", label: "Banor" },
 ];
 
 function Nav() {
