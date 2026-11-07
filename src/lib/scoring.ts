@@ -19,14 +19,19 @@ export function miniBonusForRank(rank: number | null | undefined, playerCount: n
 
 export const round1 = (n: number) => Math.round(n * 10) / 10;
 
-export function teamHcp(team: Team, players: Player[]): number {
+function exactTeamHcp(team: Team, players: Player[]): number {
   const hcps = team.members.map((id) => players.find((p) => p.id === id)?.hcp ?? 0);
-  return round1(hcps.reduce((a, b) => a + b, 0) / Math.max(1, hcps.length));
+  return hcps.reduce((a, b) => a + b, 0) / Math.max(1, hcps.length);
 }
 
-/** 9 hål → laget får halva medel-hcp:t i slag. */
+/** Lagets hcp = medelvärdet av spelarnas hcp (avrundat för visning). */
+export function teamHcp(team: Team, players: Player[]): number {
+  return round1(exactTeamHcp(team, players));
+}
+
+/** 9 hål → laget får halva medel-hcp:t i slag. Räknas på exakt medel (ingen dubbelavrundning). */
 export function teamStrokes(team: Team, players: Player[]): number {
-  return round1(teamHcp(team, players) / 2);
+  return round1(exactTeamHcp(team, players) / 2);
 }
 
 export function teamNet(t: Tournament, teamIndex: number): number | null {
